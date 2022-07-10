@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  # db:
+  #   image: postgres:14.3
+  #   volumes:
+  #     - "./data:/var/lib/postgresql/data"
+  #   environment:
+  #     - POSTGRES_USER=terin
+  #     - POSTGRES_PASSWORD=secret
+  #     - POSTGRES_DB=terin_db
+  #   ports:
+  #     - "5432:5432"
+
+  db:
+    container_name: mssqldb_dev
+    image: mcr.microsoft.com/mssql/server:2019-CU16-GDR1-ubuntu-20.04
+    volumes:
+      - DB_VOL:/var/opt/mssql
+    
+    environment:
+      - SA_PASSWORD=Terin2521+
+      - MSSQL_PID=Express
+      - ACCEPT_EULA=Y
+    ports:
+     - "1433:1433"
+volumes:
+  DB_VOL:
+    external: true

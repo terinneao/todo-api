@@ -1,0 +1,39 @@
+package db
+
+import (
+	// "database/sql"
+	"fmt"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+const (
+	host     = "localhost"
+	port     = 5432
+	user     = "terin"
+	password = "secret"
+	dbname   = "terin_db"
+)
+
+// func GetDBType() string {
+// 	return DBType
+// }
+
+func GetPostgresConnectionString() string {
+	psqlcon := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable",
+		host, user, password, dbname)
+
+	return psqlcon
+}
+
+func DataBase() *gorm.DB {
+	conString := config.GetPostgresConnectionString()
+	db, err := gorm.Open(postgres.Open(conString), &gorm.Config{})
+	db.AutoMigrate(&UserDB{})
+	if err != nil {
+		panic("failed to connect database")
+	}
+
+	return db
+}

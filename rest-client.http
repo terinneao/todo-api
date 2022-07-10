@@ -1,0 +1,31 @@
+###
+GET http://localhost:1234/users
+
+
+###
+http://localhost:1234/users/mark@meta.com
+
+###
+POST http://localhost:1234/users
+Content-Type: application/json
+
+{
+    "id": "1004",
+    
+    "email": "mark@meta.com",
+    "todo1": "buy book",
+    "todo2": "study",
+    "todo3": "practice"
+}
+
+###
+PUT http://localhost:1234/users/1002
+Content-Type: application/json
+
+{
+    # "name": "Mark Zuckerberg",
+    "email": "steve.jobs@apple.com"
+}
+
+###
+DELETE http://localhost:1234/users/1003
